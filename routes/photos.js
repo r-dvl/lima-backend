@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
             return {
                 id: photo._id,
                 date: photo.date,
+                image: photo.image,
             };
         });
         res.json(photoResponses);
