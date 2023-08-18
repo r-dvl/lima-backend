@@ -3,9 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var photosRouter = require('./routes/photos');
 
 var app = express();
 
@@ -21,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/photos', photosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,5 +41,19 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// MongoDB
+// Connection
+mongoose.connect('mongodb://192.168.1.55:27017/cat-watcher', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// JSON Handler
+app.use(bodyParser.json());
+
+// API Routes
+const apiRoutes = require('./routes/api');
+app.use('/api', apiRoutes);
 
 module.exports = app;
