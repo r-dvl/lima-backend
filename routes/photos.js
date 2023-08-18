@@ -6,13 +6,33 @@ const Photo = require('../models/Photo');
 router.get('/', async (req, res) => {
     try {
         const photos = await Photo.find();
-        const formattedPhotos = photos.map(photo => ({
-            date: photo.date.toString(),
-            image: photo.image
-        }));
-        res.json(formattedPhotos);
+        const photoResponses = photos.map(photo => {
+            return {
+                id: photo._id,
+                date: photo.date,
+            };
+        });
+        res.json(photoResponses);
     } catch (error) {
-        res.status(500).json({ error: 'Error obtaining photos from server' });
+        console.error('Error fetching photos:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+router.get('/:photoId', async (req, res) => {
+    const photoId = req.params.photoId;
+
+    try {
+        const photo = await Photo.findById(photoId);
+        if (!photo) {
+            return res.status(404).json({ message: 'Photo not found' });
+        }
+
+        res.set('Content-Type', 'photo/jpg');
+        res.send(photo.image);
+    } catch (error) {
+        console.error('Error fetching photo:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
