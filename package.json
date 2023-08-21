@@ -3,6 +3,9 @@
   "version": "v1.0.0",
   "private": false,
   "repository": "https://github.com/R-dVL/lima-backend.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
