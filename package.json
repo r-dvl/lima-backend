@@ -1,7 +1,7 @@
 {
   "name": "lima-backend",
-  "version": "0.0.0",
-  "private": true,
+  "version": "v1.0.0",
+  "private": false,
   "scripts": {
     "start": "node ./bin/www"
   },
