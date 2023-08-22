@@ -8,7 +8,7 @@ const app = express();
 
 // MongoDB
 // Connection
-mongoose.connect('mongodb://192.168.1.55:27017/cat-watcher', {
+mongoose.connect('mongodb://localhost:27017/cat-watcher', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
