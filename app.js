@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -8,7 +9,7 @@ const app = express();
 
 // MongoDB
 // Connection
-mongoose.connect('mongodb://192.168.1.55:27017/cat-watcher', {
+mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_URI}/${process.env.MONGO_DB}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
