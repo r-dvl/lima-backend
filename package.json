@@ -1,7 +1,11 @@
 {
-  "name": "lima-backend",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@R-dVL/lima-backend",
+  "version": "1.0.0",
+  "private": false,
+  "repository": "https://github.com/R-dVL/lima-backend.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/R-dVL"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
