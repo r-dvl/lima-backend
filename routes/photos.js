@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const photosRouter = express.Router();
 const Photo = require('../models/Photo');
 
 // API Routes
 // Get all
-router.get('/', async (req, res) => {
+photosRouter.get('/', async (req, res) => {
     try {
         const photos = await Photo.find();
         const photoResponses = photos.map(photo => {
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get by id
-router.get('/:id', async (req, res) => {
+photosRouter.get('/:id', async (req, res) => {
     const photoId = req.params.id;
 
     try {
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Get by date
-router.get('/date/:date', async (req, res) => {
+photosRouter.get('/date/:date', async (req, res) => {
     const requestedDate = new Date(req.params.date);
 
     const nextDay = new Date(requestedDate);
@@ -60,7 +60,7 @@ router.get('/date/:date', async (req, res) => {
 });
 
 // Delete by date (Day deleted)
-router.delete('/date/:date', async (req, res) => {
+photosRouter.delete('/date/:date', async (req, res) => {
     const requestedDate = new Date(req.params.date);
 
     try {
@@ -78,7 +78,7 @@ router.delete('/date/:date', async (req, res) => {
 });
 
 // Post photo
-router.post('/upload', async (req, res) => {
+photosRouter.post('/upload', async (req, res) => {
     try {
         const { date, image } = req.body;
 
@@ -94,4 +94,4 @@ router.post('/upload', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = photosRouter;

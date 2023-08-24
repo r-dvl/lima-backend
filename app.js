@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const photoRoutes = require('./routes/photos');
+const scriptRoutes = require('./routes/scripts')
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use(bodyParser.json());
 
 // API Routes
 app.use('/photos', photoRoutes);
+app.use('/scripts', scriptRoutes);
 
 module.exports = app;
