@@ -30,7 +30,7 @@ scriptsRouter.post('/server/cat-watcher/off', (req, res) => {
         console.log(`Script output: ${stdout}`);
         console.error(`Script errors: ${stderr}`);
 
-        res.send('cat-watcher on.');
+        res.send('cat-watcher off.');
     });
 });
 
