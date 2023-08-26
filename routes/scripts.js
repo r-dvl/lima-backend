@@ -2,7 +2,8 @@ const express = require('express');
 const scriptsRouter = express.Router();
 const { exec } = require('child_process');
 
-
+//// SERVER ////
+// Camera ON
 scriptsRouter.post('/server/cat-watcher/on', (req, res) => {
     const { version } = req.body;
 
@@ -19,6 +20,7 @@ scriptsRouter.post('/server/cat-watcher/on', (req, res) => {
     });
 });
 
+// Camera OFF
 scriptsRouter.post('/server/cat-watcher/off', (req, res) => {
 
     exec('sudo pm2 stop cat-watcher', (error, stdout, stderr) => {
@@ -34,6 +36,8 @@ scriptsRouter.post('/server/cat-watcher/off', (req, res) => {
     });
 });
 
+//// RPi ////
+// Camera ON
 scriptsRouter.post('/rpi/cat-watcher/on', (req, res) => {
     const { version } = req.body;
 
@@ -50,6 +54,7 @@ scriptsRouter.post('/rpi/cat-watcher/on', (req, res) => {
     });
 });
 
+// Camera OFF
 scriptsRouter.post('/rpi/cat-watcher/off', (req, res) => {
 
     exec('sudo bash /opt/apps/cat-watcher/stop_remote.sh', (error, stdout, stderr) => {

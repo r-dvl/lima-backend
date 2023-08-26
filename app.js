@@ -3,13 +3,14 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+// Express init
+const app = express();
+
+// API Routes Init
 const photoRoutes = require('./routes/photos');
 const scriptRoutes = require('./routes/scripts')
 
-const app = express();
-
-// MongoDB
-// Connection
+// MongoDB Connection
 mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_URI}/${process.env.MONGO_DB}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
