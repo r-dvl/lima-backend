@@ -42,3 +42,4 @@ GET, POST and DELETE Routes for photos shown in frontend.
 HTTP Requests for scripts that turn on/off cameras.
 
 ## TODO
+- [ ] Improve camera activation to have less dependencies in host scripts.
