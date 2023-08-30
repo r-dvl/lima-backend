@@ -40,3 +40,5 @@ GET, POST and DELETE Routes for photos shown in frontend.
 
 ### scripts
 HTTP Requests for scripts that turn on/off cameras.
+
+## TODO
