@@ -1,5 +1,5 @@
 # Lima Backend
-_Server API made with Express.js for [lima-frontend](https://github.com/R-dVL/lima-frontend) and [cat-watcher](https://github.com/R-dVL/cat-watcher)._
+_Server API made with Express.js for [lima-frontend](https://github.com/R-dVL/lima-frontend)._
 
 
 ## Table of Contents
