@@ -1,7 +1,8 @@
 # Lima Backend
----
-_Server API made with Express.js for __lima-frontend__ and __cat-watcher._
+Server API made with Express.js for __lima-frontend__ and __cat-watcher.__
+
 > [lima-frontend](https://github.com/R-dVL/lima-frontend)
+
 > [cat-watcher](https://github.com/R-dVL/cat-watcher)
 
 
