@@ -6,21 +6,17 @@ _Server API made with Express.js for __lima-frontend__ and __cat-watcher._
 
 
 ## Table of Contents
----
 1. [Dependencies](#Dependencies)
 2. [Project Structure](#Project%20Structure)
 3. [Models](#Models)
 4. [Routes](#Routes)
-5. [TODO](#TODO)
 
 
 ## Dependencies
----
 - MongoDB
 
 
 ## Project Structure
----
 ~~~text
 (root)
 +- bin
@@ -37,7 +33,6 @@ _Server API made with Express.js for __lima-frontend__ and __cat-watcher._
 
 
 ## Models
----
 _Database models._
 
 
@@ -50,7 +45,6 @@ User model for frontend protected routes.
 
 
 ## Routes
----
 _API HTTP Requests routes._
 
 
@@ -64,9 +58,4 @@ GET, POST and DELETE Routes for photos shown in frontend.
 
 ### scripts
 HTTP Requests for scripts that turn on/off cameras.
-
-
-## TODO
----
-- [ ] Improve camera activation to have less dependencies in host scripts.
 
