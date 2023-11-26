@@ -12,7 +12,7 @@ const scriptRoutes = require('./routes/scripts');
 const authRoutes = require('./routes/auth')
 
 // MongoDB Connection
-mongoose.connect(`${process.env.MONGODB_URL}`, {
+mongoose.connect(`${process.env.MONGODB_URL}/lima`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
