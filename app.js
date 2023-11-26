@@ -2,9 +2,14 @@ const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 
 // Express init
 const app = express();
+
+// TODO: Specify hosts
+app.use(cors());
 
 // API Routes Init
 const photoRoutes = require('./routes/photos');
