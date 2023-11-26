@@ -2,8 +2,28 @@ const express = require('express');
 const photosRouter = express.Router();
 const Photo = require('../models/Photo');
 
-////// API Routes //////
-//// GET ////
+
+////// Cat Watcher APP CRUD //////
+//// Create ////
+// Post photo
+photosRouter.post('/upload', async (req, res) => {
+    try {
+        const { date, image, cat } = req.body;
+
+        const newPhoto = new Photo({
+            date: new Date(date),
+            image: image,
+            cat: cat
+        });
+
+        await newPhoto.save();
+        res.json({ message: 'Photo uploaded' });
+    } catch (err) {
+        res.status(500).json({ error: err.toString() });
+    }
+});
+
+//// Read ////
 // Get all photos
 photosRouter.get('/', async (req, res) => {
     try {
@@ -61,7 +81,30 @@ photosRouter.get('/date/:date', async (req, res) => {
     }
 });
 
-//// DELETE ////
+//// Update ////
+// Change cat value
+photosRouter.put('/updateCat/:photoId', async (req, res) => {
+    try {
+        const photoId = req.params.photoId;
+        const { newCatValue } = req.body;
+
+        // Encuentra la foto por su ID
+        const photo = await Photo.findById(photoId);
+
+        // Si la foto existe, actualiza el valor de 'cat'
+        if (photo) {
+            photo.cat = newCatValue;
+            await photo.save();
+            res.json({ message: 'Cat value updated' });
+        } else {
+            res.status(404).json({ error: 'Photo not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.toString() });
+    }
+});
+
+//// Delete ////
 // Delete by Id
 photosRouter.delete('/:id', async (req, res) => {
     const photoId = req.params.id;
@@ -95,48 +138,6 @@ photosRouter.delete('/date/:date', async (req, res) => {
         res.json({ message: `${result.deletedCount} photos deleted` });
     } catch (err) {
         res.status(500).json({ error: 'Error deleting photos' });
-    }
-});
-
-//// POST ////
-// Post photo
-photosRouter.post('/upload', async (req, res) => {
-    try {
-        const { date, image, cat } = req.body;
-
-        const newPhoto = new Photo({
-            date: new Date(date),
-            image: image,
-            cat: cat
-        });
-
-        await newPhoto.save();
-        res.json({ message: 'Photo uploaded' });
-    } catch (err) {
-        res.status(500).json({ error: err.toString() });
-    }
-});
-
-//// PUT ////
-// Change cat value
-photosRouter.put('/updateCat/:photoId', async (req, res) => {
-    try {
-        const photoId = req.params.photoId;
-        const { newCatValue } = req.body;
-
-        // Encuentra la foto por su ID
-        const photo = await Photo.findById(photoId);
-
-        // Si la foto existe, actualiza el valor de 'cat'
-        if (photo) {
-            photo.cat = newCatValue;
-            await photo.save();
-            res.json({ message: 'Cat value updated' });
-        } else {
-            res.status(404).json({ error: 'Photo not found' });
-        }
-    } catch (err) {
-        res.status(500).json({ error: err.toString() });
     }
 });
 

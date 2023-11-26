@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+/**
+ * MongoDB Photo Schema
+ */
 const photoSchema = new mongoose.Schema({
     date: Date,
     image: String,
