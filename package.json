@@ -1,6 +1,6 @@
 {
   "name": "@R-dVL/lima-backend",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "private": false,
   "repository": "https://github.com/R-dVL/lima-backend.git",
   "publishConfig": {
