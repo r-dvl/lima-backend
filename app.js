@@ -8,8 +8,13 @@ const cors = require('cors');
 // Express init
 const app = express();
 
+const corsOptions = {
+  origin: 'https://r-dvl.site',
+  optionsSuccessStatus: 200,
+};
+
 // TODO: Specify hosts
-app.use(cors());
+app.use(cors(corsOptions));
 
 // API Routes Init
 const photoRoutes = require('./routes/photos');
