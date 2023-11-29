@@ -38,7 +38,6 @@ photosRouter.get('/', async (req, res) => {
         });
         res.json(photoResponses);
     } catch (error) {
-        console.error('Error fetching photos:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
@@ -56,7 +55,6 @@ photosRouter.get('/:id', async (req, res) => {
         res.set('Content-Type', 'photo/jpg');
         res.send(photo);
     } catch (error) {
-        console.error('Error fetching photo:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
@@ -118,7 +116,6 @@ photosRouter.delete('/:id', async (req, res) => {
 
         res.json({ message: 'Photo deleted' });
     } catch (error) {
-        console.error('Error deleting photo:', error);
         res.status(500).json({ error: 'Error deleting photo' });
     }
 });
