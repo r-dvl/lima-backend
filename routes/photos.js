@@ -1,7 +1,11 @@
 const express = require('express');
 const photosRouter = express.Router();
 const Photo = require('../models/Photo');
+const authMiddleware = require('../middlewares/authMiddleware');
 
+
+// API Authentification
+photosRouter.use(authMiddleware);
 
 ////// Cat Watcher APP CRUD //////
 //// Create ////
