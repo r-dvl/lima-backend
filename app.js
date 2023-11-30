@@ -21,7 +21,8 @@ const scriptRoutes = require('./routes/scripts');
 const authRoutes = require('./routes/auth')
 
 // MongoDB Connection
-mongoose.connect(`${process.env.MONGODB_URL}/lima`, {
+// mongoose.connect(`${process.env.MONGODB_URL}/lima`, {
+  mongoose.connect(`mongodb://192.168.1.55:27017/lima`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

@@ -1,7 +1,11 @@
 const express = require('express');
 const scriptsRouter = express.Router();
 const { exec } = require('child_process');
+const authMiddleware = require('../middlewares/authMiddleware');
 
+
+// API Authentification
+scriptsRouter.use(authMiddleware);
 
 // Camera ON
 scriptsRouter.post('/cat-watcher/on', (req, res) => {
