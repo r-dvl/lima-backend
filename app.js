@@ -27,11 +27,7 @@ mongoose.connect(`mongodb://192.168.1.55:27017/lima`, {
 });
 
 // JSON Handler
-app.use(bodyParser.json());
-
-// Data load limits 
-app.use(express.json({limit: '200mb'}));
-app.use(express.urlencoded({limit: '200mb'}))
+app.use(bodyParser.json({limit: '50mb'}));
 
 // API Routes
 app.use('/photos', photoRoutes);
