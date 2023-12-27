@@ -8,8 +8,7 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-  //origin: 'https://r-dvl.site',
-  origin: 'http://localhost:3002',
+  origin: 'https://r-dvl.site',
   optionsSuccessStatus: 200,
 };
 
