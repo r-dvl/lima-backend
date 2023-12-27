@@ -12,12 +12,11 @@ photosRouter.use(authMiddleware);
 // Post photo
 photosRouter.post('/upload', async (req, res) => {
     try {
-        const { date, image, cat } = req.body;
+        const { date, image } = req.body;
 
         const newPhoto = new Photo({
             date: new Date(date),
             image: image,
-            cat: cat
         });
 
         await newPhoto.save();
@@ -37,7 +36,6 @@ photosRouter.get('/', async (req, res) => {
                 id: photo._id,
                 date: photo.date,
                 image: photo.image,
-                cat: photo.cat
             };
         });
         res.json(photoResponses);
@@ -63,9 +61,11 @@ photosRouter.get('/:id', async (req, res) => {
     }
 });
 
-// Get photo by date
-photosRouter.get('/date/:date', async (req, res) => {
+// Get Photos by date and page
+photosRouter.get('/date/:date/:page', async (req, res) => {
     const requestedDate = new Date(req.params.date);
+    const photosPerPage = 9;
+    const currentPage = Number(req.params.page);
 
     const nextDay = new Date(requestedDate);
     nextDay.setDate(nextDay.getDate() + 1);
@@ -76,35 +76,40 @@ photosRouter.get('/date/:date', async (req, res) => {
                 $gte: requestedDate,
                 $lt: nextDay,
             },
-        }).exec();
+        })
+        .sort('-date')
+        .skip((currentPage - 1) * photosPerPage)
+        .limit(photosPerPage)
+        .exec();
+
         res.json(photos);
     } catch (err) {
         res.status(500).json({ error: 'Error obtaining photos' });
     }
 });
 
-//// Update ////
-// Change cat value
-photosRouter.put('/updateCat/:photoId', async (req, res) => {
+// Get number of photos by date
+photosRouter.get('/count/:date', async (req, res) => {
+    const requestedDate = new Date(req.params.date);
+    const nextDay = new Date(requestedDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+
     try {
-        const photoId = req.params.photoId;
-        const { newCatValue } = req.body;
-
-        // Encuentra la foto por su ID
-        const photo = await Photo.findById(photoId);
-
-        // Si la foto existe, actualiza el valor de 'cat'
-        if (photo) {
-            photo.cat = newCatValue;
-            await photo.save();
-            res.json({ message: 'Cat value updated' });
-        } else {
-            res.status(404).json({ error: 'Photo not found' });
-        }
+        const photoCount = await Photo.countDocuments({
+            date: {
+                $gte: requestedDate,
+                $lt: nextDay,
+            },
+        });
+        res.json({ count: photoCount });
     } catch (err) {
-        res.status(500).json({ error: err.toString() });
+        res.status(500).json({ error: 'Error obtaining photo count' });
     }
 });
+
+
+//// Update ////
+
 
 //// Delete ////
 // Delete by Id

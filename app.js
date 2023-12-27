@@ -8,7 +8,8 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-  origin: 'https://r-dvl.site',
+  //origin: 'https://r-dvl.site',
+  origin: 'http://localhost:3002',
   optionsSuccessStatus: 200,
 };
 
@@ -17,11 +18,11 @@ app.use(cors(corsOptions));
 
 // API Routes Init
 const photoRoutes = require('./routes/photos');
-const scriptRoutes = require('./routes/scripts');
 const authRoutes = require('./routes/auth')
 
 // MongoDB Connection
-mongoose.connect(`${process.env.MONGODB_URL}/lima`, {
+// mongoose.connect(`${process.env.MONGODB_URL}/lima`, {
+mongoose.connect(`mongodb://192.168.1.55:27017/lima`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -31,7 +32,6 @@ app.use(bodyParser.json());
 
 // API Routes
 app.use('/photos', photoRoutes);
-app.use('/scripts', scriptRoutes);
 app.use('/auth', authRoutes);
 
 module.exports = app;
