@@ -2,7 +2,7 @@ const express = require('express');
 const dockerRouter = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware');
 const Docker = require('dockerode');
-const docker = new Docker({host: '0.0.0.0', port: 2375});
+const docker = new Docker({host: '192.168.1.55', port: 2375});
 
 // API Authentification
 dockerRouter.use(authMiddleware);
