@@ -10,13 +10,7 @@ const authRouter = express.Router();
  */
 authRouter.post('/register', async (req, res) => {
     try {
-        const { username, email, password } = req.body;
-
-        // Unique e-mail check
-        const existingEmail = await User.findOne({ email });
-        if (existingEmail) {
-            return res.status(400).json({ error: 'Email already in use.' });
-        }
+        const { username, password } = req.body;
 
         // Unique username check
         const existingUsername = await User.findOne({ username });
@@ -28,7 +22,6 @@ authRouter.post('/register', async (req, res) => {
 
         const newUser = new User({
             username,
-            email,
             password: hashedPassword,
         });
 
@@ -46,9 +39,9 @@ authRouter.post('/register', async (req, res) => {
  */
 authRouter.post('/login', async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         if (!user) {
             return res.status(401).json({ error: 'Invalid credentials' });
@@ -60,8 +53,7 @@ authRouter.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        // const token = jwt.sign({ userId: user._id }, 'secret_key', { expiresIn: '1h' });
-        const token = jwt.sign({ userId: user._id }, 'secret_key', {});
+        const token = jwt.sign({ userId: user._id }, 'secret_key', { expiresIn: '1h' });
 
         res.json({ token });
     } catch (error) {
