@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Token = require('../models/Token');
 
 const authRouter = express.Router();
 
@@ -58,6 +59,41 @@ authRouter.post('/login', async (req, res) => {
         res.json({ token });
     } catch (error) {
         res.status(500).json({ error: 'Login error' });
+    }
+});
+
+/**
+ * Undefined expiration token generator
+ */
+authRouter.post('/token', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign({ userId: user._id }, 'secret_key', {});
+
+        const newToken = new Token({
+            username,
+            token,
+        });
+
+        await newToken.save();
+
+        res.status(201).json({ message: 'Token creation success.' });
+
+    } catch (error) {
+        res.status(500).json({ error: 'Error in token creation.' });
     }
 });
 
