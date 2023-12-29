@@ -1,8 +1,8 @@
 {
   "name": "lima-backend",
-  "version": "1.2.2",
+  "version": "1.4.10",
   "private": false,
-  "repository": "https://github.com/R-dVL/lima-backend.git",
+  "repository": "https://github.com/r-dvl/lima-backend.git",
   "scripts": {
     "start": "node ./bin/www"
   },
