@@ -1,46 +1,67 @@
 # Lima Backend
-Rest API made with Express.js for [lima-frontend](https://github.com/R-dVL/lima-frontend).
+Rest API made with Express.js.
 
 
 ## Contents
-1. [Models](#Models)
-2. [Routes](#Routes)
-3. [Middlewares](#Middlewares)
+1. [Project Structure](#Project%20Structure)
+2. [Models](#Models)
+3. [Routes](#Routes)
+4. [Middlewares](#Middlewares)
 
+
+## Project Structure
+```text
+(root)
++- bin                          # Main script
+|   +- www
++- middlewares                  # Middlewares
+|   +- authMiddleware.js
+|   +- ...
++- models                       # Database Models
+|   +- Photo.js
+|   +- Token.js
+|   +- User.js
+|   +- ...
++- routes                       # Endpoints
+|   +- auth.js
+|   +- docker.js
+|   +- photos.js
+|   +- ...
++- app.js                       # Server configuration
+```
 
 ## Models
 Database models.
 
-
 ### Photo
-Model for [cat-watcher](https://github.com/R-dVL/cat-watcher) photos uploaded in MongoDB.
+Under construction...
 
 
 ### User
-User model for frontend protected routes.
+Under construction...
 
 
 ### Tokens
-Undefined expiration tokens saved in database.
+Under construction...
 
 
 ## Routes
-API endpoints.
-
+Endpoints.
 
 ### auth
-User auth routes.
+Under construction...
 
 
 ### photos
-[cat-watcher](https://github.com/R-dVL/cat-watcher) CRUD.
+Under construction...
 
 
 ### docker
-Docker remote API wrapper to control connected applications.
+Under construction...
 
 
 ## Middlewares
+
 ### authMiddleware
-Private routes protection with JWT token.
+Under construction...
 
