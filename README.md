@@ -1,58 +1,45 @@
 # Lima Backend
-_Server API made with Express.js for [lima-frontend](https://github.com/R-dVL/lima-frontend)._
+Server API made with Express.js for [lima-frontend](https://github.com/R-dVL/lima-frontend).
 
 
 ## Table of Contents
-1. [Dependencies](#Dependencies)
-2. [Project Structure](#Project%20Structure)
-3. [Models](#Models)
-4. [Routes](#Routes)
-
-
-## Dependencies
-- MongoDB
-
-
-## Project Structure
-~~~text
-(root)
-+- bin
-|   +- www
-+- models
-|   +- Photo.js
-|   +- User.js
-+- routes
-|   +- auth.js
-|   +- photos.js
-|   +- scripts.js
-+- App.js
-~~~
+1. [Models](#Models)
+2. [Routes](#Routes)
+3. [Middlewares](#Middlewares)
 
 
 ## Models
-_Database models._
+Database models.
 
 
 ### Photo
-Model for cat-watcher photos uploaded in MongoDB.
+Model for [Cat Watcher](https://github.com/R-dVL/cat-watcher) photos uploaded in MongoDB.
 
 
 ### User
 User model for frontend protected routes.
 
 
+### Tokens
+Undefined expiration tokens saved in database.
+
+
 ## Routes
-_API HTTP Requests routes._
+API HTTP Requests routes.
 
 
 ### auth
-User token auth routes.
+User auth routes.
 
 
 ### photos
-GET, POST and DELETE Routes for photos shown in frontend.
+[Cat Watcher](https://github.com/R-dVL/cat-watcher) CRUD.
 
 
-### scripts
-HTTP Requests for scripts that turn on/off cameras.
+### docker
+Docker remote API wrapper to control connected applications.
 
+
+## Middlewares
+### authMiddleware
+Private routes protection with JWT token.
