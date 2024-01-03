@@ -1,6 +1,13 @@
+// Import necessary modules
 const jwt = require('jsonwebtoken');
 
-
+/**
+ * Middleware for JWT endpoint protection.
+ * @function authMiddleware
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {function} next - Express next middleware function.
+ */
 const authMiddleware = (req, res, next) => {
     const token = req.header('Authorization');
 
@@ -17,4 +24,5 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
+// Export the middleware
 module.exports = authMiddleware;

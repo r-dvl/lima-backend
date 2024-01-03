@@ -1,15 +1,25 @@
+/**
+ * This module provides the endpoints for the Cat Watcher app.
+ * @module photosRouter
+ */
+
+// Import necessary modules
 const express = require('express');
 const photosRouter = express.Router();
 const Photo = require('../models/Photo');
 const authMiddleware = require('../middlewares/authMiddleware');
 
-
-// API Authentification
+// Use authentication middleware
 photosRouter.use(authMiddleware);
 
-////// Cat Watcher APP CRUD //////
-//// Create ////
-// Post photo
+/**
+ * Endpoint to post a photo.
+ * @name post/upload
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 photosRouter.post('/upload', async (req, res) => {
     try {
         const { date, image } = req.body;
@@ -26,8 +36,14 @@ photosRouter.post('/upload', async (req, res) => {
     }
 });
 
-//// Read ////
-// Get all photos
+/**
+ * Endpoint to get all photos.
+ * @name get/
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 photosRouter.get('/', async (req, res) => {
     try {
         const photos = await Photo.find();
@@ -44,7 +60,14 @@ photosRouter.get('/', async (req, res) => {
     }
 });
 
-// Get photo by id
+/**
+ * Endpoint to get a photo by id.
+ * @name get/:id
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 photosRouter.get('/:id', async (req, res) => {
     const photoId = req.params.id;
 
@@ -61,7 +84,14 @@ photosRouter.get('/:id', async (req, res) => {
     }
 });
 
-// Get Photos by date and page
+/**
+ * Endpoint to get photos by date and page.
+ * @name get/date/:date/:page
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 photosRouter.get('/date/:date/:page', async (req, res) => {
     const requestedDate = new Date(req.params.date);
     const photosPerPage = 9;
@@ -77,10 +107,10 @@ photosRouter.get('/date/:date/:page', async (req, res) => {
                 $lt: nextDay,
             },
         })
-        .sort('-date')
-        .skip((currentPage - 1) * photosPerPage)
-        .limit(photosPerPage)
-        .exec();
+            .sort('-date')
+            .skip((currentPage - 1) * photosPerPage)
+            .limit(photosPerPage)
+            .exec();
 
         res.json(photos);
     } catch (err) {
@@ -88,7 +118,14 @@ photosRouter.get('/date/:date/:page', async (req, res) => {
     }
 });
 
-// Get number of photos by date
+/**
+ * Endpoint to get the count of photos by date.
+ * @name get/count/:date
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 photosRouter.get('/count/:date', async (req, res) => {
     const requestedDate = new Date(req.params.date);
     const nextDay = new Date(requestedDate);
@@ -107,12 +144,14 @@ photosRouter.get('/count/:date', async (req, res) => {
     }
 });
 
-
-//// Update ////
-
-
-//// Delete ////
-// Delete by Id
+/**
+ * Endpoint to delete a photo by id.
+ * @name delete/:id
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 photosRouter.delete('/:id', async (req, res) => {
     const photoId = req.params.id;
 
@@ -129,7 +168,14 @@ photosRouter.delete('/:id', async (req, res) => {
     }
 });
 
-// Delete by date (Entire date deleted)
+/**
+ * Endpoint to delete photos by day (entire day).
+ * @name delete/date/:date
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 photosRouter.delete('/date/:date', async (req, res) => {
     const requestedDate = new Date(req.params.date);
 
@@ -147,4 +193,5 @@ photosRouter.delete('/date/:date', async (req, res) => {
     }
 });
 
+// Export the router
 module.exports = photosRouter;

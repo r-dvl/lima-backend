@@ -1,13 +1,25 @@
+/**
+ * This module provides the authentication endpoints.
+ * @module authRouter
+ */
+
+// Import necessary modules
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Token = require('../models/Token');
 
+// Create Express router
 const authRouter = express.Router();
 
 /**
- * User Register
+ * Endpoint for user registration.
+ * @name post/register
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
  */
 authRouter.post('/register', async (req, res) => {
     try {
@@ -36,7 +48,12 @@ authRouter.post('/register', async (req, res) => {
 });
 
 /**
- * User Login
+ * Endpoint for user login.
+ * @name post/login
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
  */
 authRouter.post('/login', async (req, res) => {
     try {
@@ -63,7 +80,12 @@ authRouter.post('/login', async (req, res) => {
 });
 
 /**
- * Undefined expiration token generator
+ * Endpoint to generate a token with undefined expiration.
+ * @name post/token
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
  */
 authRouter.post('/token', async (req, res) => {
     try {
@@ -97,4 +119,5 @@ authRouter.post('/token', async (req, res) => {
     }
 });
 
+// Export the router
 module.exports = authRouter;

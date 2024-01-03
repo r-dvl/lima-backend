@@ -1,13 +1,26 @@
+/**
+ * This module provides a Docker API wrapper.
+ * @module dockerRouter
+ */
+
+// Import necessary modules
 const express = require('express');
 const dockerRouter = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware');
 const Docker = require('dockerode');
-const docker = new Docker({host: '192.168.1.55', port: 2375});
+const docker = new Docker({ host: '192.168.1.55', port: 2375 });
 
-// API Authentification
+// Use authentication middleware
 dockerRouter.use(authMiddleware);
 
-// Container Status
+/**
+ * Endpoint to get the status of a container.
+ * @name get/status/:id
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 dockerRouter.get('/status/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -19,7 +32,14 @@ dockerRouter.get('/status/:id', async (req, res) => {
     }
 });
 
-// Container start
+/**
+ * Endpoint to start a container.
+ * @name post/start/:id
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 dockerRouter.post('/start/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -31,7 +51,14 @@ dockerRouter.post('/start/:id', async (req, res) => {
     }
 });
 
-// Container stop
+/**
+ * Endpoint to stop a container.
+ * @name post/stop/:id
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 dockerRouter.post('/stop/:id', async (req, res) => {
     const { id } = req.params;
     try {
