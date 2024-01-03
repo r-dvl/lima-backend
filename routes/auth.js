@@ -15,11 +15,9 @@ const authRouter = express.Router();
 
 /**
  * Endpoint for user registration.
- * @name post/register
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route POST /register
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 authRouter.post('/register', async (req, res) => {
     try {
@@ -49,11 +47,9 @@ authRouter.post('/register', async (req, res) => {
 
 /**
  * Endpoint for user login.
- * @name post/login
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route POST /login
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 authRouter.post('/login', async (req, res) => {
     try {
@@ -81,11 +77,9 @@ authRouter.post('/login', async (req, res) => {
 
 /**
  * Endpoint to generate a token with undefined expiration.
- * @name post/token
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route POST /token
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 authRouter.post('/token', async (req, res) => {
     try {

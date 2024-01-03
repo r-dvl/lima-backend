@@ -14,11 +14,9 @@ photosRouter.use(authMiddleware);
 
 /**
  * Endpoint to post a photo.
- * @name post/upload
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route POST /upload
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 photosRouter.post('/upload', async (req, res) => {
     try {
@@ -38,11 +36,9 @@ photosRouter.post('/upload', async (req, res) => {
 
 /**
  * Endpoint to get all photos.
- * @name get/
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route GET /
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 photosRouter.get('/', async (req, res) => {
     try {
@@ -62,11 +58,9 @@ photosRouter.get('/', async (req, res) => {
 
 /**
  * Endpoint to get a photo by id.
- * @name get/:id
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route GET /:id
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 photosRouter.get('/:id', async (req, res) => {
     const photoId = req.params.id;
@@ -86,11 +80,9 @@ photosRouter.get('/:id', async (req, res) => {
 
 /**
  * Endpoint to get photos by date and page.
- * @name get/date/:date/:page
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route GET /date/:date/:page
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 photosRouter.get('/date/:date/:page', async (req, res) => {
     const requestedDate = new Date(req.params.date);
@@ -120,11 +112,9 @@ photosRouter.get('/date/:date/:page', async (req, res) => {
 
 /**
  * Endpoint to get the count of photos by date.
- * @name get/count/:date
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route GET /count/:date
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 photosRouter.get('/count/:date', async (req, res) => {
     const requestedDate = new Date(req.params.date);
@@ -146,11 +136,9 @@ photosRouter.get('/count/:date', async (req, res) => {
 
 /**
  * Endpoint to delete a photo by id.
- * @name delete/:id
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route DELETE /:id
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 photosRouter.delete('/:id', async (req, res) => {
     const photoId = req.params.id;
@@ -170,11 +158,9 @@ photosRouter.delete('/:id', async (req, res) => {
 
 /**
  * Endpoint to delete photos by day (entire day).
- * @name delete/date/:date
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route DELETE /date/:date
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 photosRouter.delete('/date/:date', async (req, res) => {
     const requestedDate = new Date(req.params.date);

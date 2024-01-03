@@ -15,11 +15,9 @@ dockerRouter.use(authMiddleware);
 
 /**
  * Endpoint to get the status of a container.
- * @name get/status/:id
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route GET /status/:id
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 dockerRouter.get('/status/:id', async (req, res) => {
     const { id } = req.params;
@@ -34,11 +32,9 @@ dockerRouter.get('/status/:id', async (req, res) => {
 
 /**
  * Endpoint to start a container.
- * @name post/start/:id
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route POST /start/:id
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 dockerRouter.post('/start/:id', async (req, res) => {
     const { id } = req.params;
@@ -53,11 +49,9 @@ dockerRouter.post('/start/:id', async (req, res) => {
 
 /**
  * Endpoint to stop a container.
- * @name post/stop/:id
- * @function
- * @inner
- * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
+ * @route POST /stop/:id
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
  */
 dockerRouter.post('/stop/:id', async (req, res) => {
     const { id } = req.params;
@@ -70,4 +64,5 @@ dockerRouter.post('/stop/:id', async (req, res) => {
     }
 });
 
+// Export the router
 module.exports = dockerRouter;
