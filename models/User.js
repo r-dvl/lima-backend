@@ -1,5 +1,5 @@
 // Import necessary modules
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 /**
  * MongoDB User Schema.
@@ -13,4 +13,4 @@ const userSchema = new mongoose.Schema({
 });
 
 // Export the User model
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);

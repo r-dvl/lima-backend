@@ -4,10 +4,13 @@
  */
 
 // Import necessary modules
-const express = require('express');
+import express from 'express';
+import Docker from 'dockerode';
+import authMiddleware from '../middlewares/authMiddleware.js';
+
+// Create Express router
 const dockerRouter = express.Router();
-const authMiddleware = require('../middlewares/authMiddleware');
-const Docker = require('dockerode');
+
 const docker = new Docker({ host: '192.168.1.55', port: 2375 });
 
 // Use authentication middleware
@@ -65,4 +68,4 @@ dockerRouter.post('/stop/:id', async (req, res) => {
 });
 
 // Export the router
-module.exports = dockerRouter;
+export default dockerRouter;

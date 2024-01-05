@@ -4,16 +4,16 @@
  */
 
 // Import necessary modules
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mongoDbUrl = require('./config');
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import mongoDbUrl from './config.js';
 
 // Import routes
-const photoRoutes = require('./routes/photos');
-const authRoutes = require('./routes/auth');
-const dockerRoutes = require('./routes/docker');
+import photoRoutes from './routes/photos.js';
+import authRoutes from './routes/auth.js';
+import dockerRoutes from './routes/docker.js';
 
 // Create Express application
 const app = express();
@@ -23,7 +23,7 @@ const app = express();
  * @type {Object}
  */
 const corsOptions = {
-  origin: 'https://r-dvl.site',
+  origin: ['https://r-dvl.site'],
   optionsSuccessStatus: 200,
 };
 
@@ -54,4 +54,4 @@ app.use('/auth', authRoutes);
 app.use('/docker', dockerRoutes);
 
 // Export Express application
-module.exports = app;
+export default app;

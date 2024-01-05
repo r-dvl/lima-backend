@@ -1,5 +1,5 @@
 // Import necessary modules
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 /**
  * MongoDB Token Schema.
@@ -13,4 +13,4 @@ const tokenSchema = new mongoose.Schema({
 });
 
 // Export the Token model
-module.exports = mongoose.model('Token', tokenSchema);
+export default mongoose.model('Token', tokenSchema);

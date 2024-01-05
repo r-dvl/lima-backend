@@ -4,11 +4,11 @@
  */
 
 // Import necessary modules
-const express = require('express');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const Token = require('../models/Token');
+import express from 'express';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import Token from '../models/Token.js';
 
 // Create Express router
 const authRouter = express.Router();
@@ -114,4 +114,4 @@ authRouter.post('/token', async (req, res) => {
 });
 
 // Export the router
-module.exports = authRouter;
+export default authRouter;
