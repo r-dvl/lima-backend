@@ -8,11 +8,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const mongoDbUrl = require('./config');
 
 // Import routes
 const photoRoutes = require('./routes/photos');
-const authRoutes = require('./routes/auth')
-const dockerRoutes = require('./routes/docker')
+const authRoutes = require('./routes/auth');
+const dockerRoutes = require('./routes/docker');
 
 // Create Express application
 const app = express();
@@ -33,7 +34,7 @@ app.use(cors(corsOptions));
  * MongoDB connection.
  * Connects to the MongoDB database at the URL specified by the MONGODB_URL environment variable.
  */
-mongoose.connect(`${process.env.MONGODB_URL}/lima`, {
+mongoose.connect(`${mongoDbUrl}/lima`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
