@@ -40,18 +40,18 @@ mongoose.connect(`${mongoDbUrl}/lima`, {
 });
 
 /**
+ * JSON handler.
+ * Configures body parsing middleware to parse the body of incoming requests as JSON.
+ */
+app.use(bodyParser.json({limit: '50mb'}));
+
+/**
  * Use API routes.
  * Defines routes for photos, authentication, and Docker.
  */
 app.use('/photos', photoRoutes);
 app.use('/auth', authRoutes);
 app.use('/docker', dockerRoutes);
-
-/**
- * JSON handler.
- * Configures body parsing middleware to parse the body of incoming requests as JSON.
- */
-app.use(bodyParser.json({limit: '50mb'}));
 
 // Export Express application
 module.exports = app;
