@@ -1,10 +1,11 @@
 {
   "name": "lima-backend",
   "version": "1.4.10",
+  "type": "module",
   "private": false,
   "repository": "https://github.com/r-dvl/lima-backend.git",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/start.js"
   },
   "dependencies": {
     "body-parser": "~1.20.2",

@@ -4,16 +4,16 @@
  */
 
 // Import necessary modules
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mongoDbUrl = require('./config');
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import mongoDbUrl from './config.js';
 
 // Import routes
-const photoRoutes = require('./routes/photos');
-const authRoutes = require('./routes/auth');
-const dockerRoutes = require('./routes/docker');
+import photoRoutes from './routes/photos.js';
+import authRoutes from './routes/auth.js';
+import dockerRoutes from './routes/docker.js';
 
 // Create Express application
 const app = express();
@@ -23,7 +23,7 @@ const app = express();
  * @type {Object}
  */
 const corsOptions = {
-  origin: 'https://r-dvl.site',
+  origin: ['https://r-dvl.site'],
   optionsSuccessStatus: 200,
 };
 
@@ -40,6 +40,12 @@ mongoose.connect(`${mongoDbUrl}/lima`, {
 });
 
 /**
+ * JSON handler.
+ * Configures body parsing middleware to parse the body of incoming requests as JSON.
+ */
+app.use(bodyParser.json({limit: '50mb'}));
+
+/**
  * Use API routes.
  * Defines routes for photos, authentication, and Docker.
  */
@@ -47,11 +53,5 @@ app.use('/photos', photoRoutes);
 app.use('/auth', authRoutes);
 app.use('/docker', dockerRoutes);
 
-/**
- * JSON handler.
- * Configures body parsing middleware to parse the body of incoming requests as JSON.
- */
-app.use(bodyParser.json({limit: '50mb'}));
-
 // Export Express application
-module.exports = app;
+export default app;

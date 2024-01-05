@@ -1,5 +1,5 @@
 // Import necessary modules
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 /**
  * Middleware for JWT endpoint protection.
@@ -25,4 +25,4 @@ const authMiddleware = (req, res, next) => {
 };
 
 // Export the middleware
-module.exports = authMiddleware;
+export default authMiddleware;

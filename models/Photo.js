@@ -1,5 +1,5 @@
 // Import necessary modules
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 /**
  * MongoDB Photo Schema.
@@ -12,8 +12,5 @@ const photoSchema = new mongoose.Schema({
     image: String,
 });
 
-// TODO: Check this constant
-const Photo = mongoose.model('Photo', photoSchema);
-
 // Export the Photo model
-module.exports = Photo;
+export default mongoose.model('Photo', photoSchema);

@@ -4,10 +4,12 @@
  */
 
 // Import necessary modules
-const express = require('express');
+import express from 'express';
+import Photo from '../models/Photo.js';
+import authMiddleware from '../middlewares/authMiddleware.js';
+
+// Create Express router
 const photosRouter = express.Router();
-const Photo = require('../models/Photo');
-const authMiddleware = require('../middlewares/authMiddleware');
 
 // Use authentication middleware
 photosRouter.use(authMiddleware);
@@ -180,4 +182,4 @@ photosRouter.delete('/date/:date', async (req, res) => {
 });
 
 // Export the router
-module.exports = photosRouter;
+export default photosRouter;
